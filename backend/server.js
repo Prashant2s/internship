@@ -287,4 +287,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => console.log(`API listening on :${PORT}`));
+const HOST = process.env.HOST || '0.0.0.0';
+server.listen(PORT, HOST, () => console.log(`API listening on ${HOST}:${PORT}`));
