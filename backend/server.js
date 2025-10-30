@@ -66,6 +66,17 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Routes
+app.get("/", (req, res) => res.json({ 
+  message: "Chat App Backend API", 
+  status: "running",
+  endpoints: {
+    health: "/health",
+    auth: "/api/auth/*",
+    rooms: "/api/rooms/*",
+    groups: "/api/groups/*",
+    admin: "/api/admin/*"
+  }
+}));
 app.get("/health", (req, res) => res.json({ ok: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", authMiddleware, roomRoutes);
